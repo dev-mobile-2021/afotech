@@ -1,0 +1,306 @@
+<ion-view view-title="Nouvelle visite" cache-view="false">
+  <ion-pane>
+    <div ng-app="starter">
+
+      <ion-content >
+
+        <style type="text/css">
+          input[readonly] {
+            background-color: transparent !important;
+            cursor: not-allowed;
+          }
+          .div-header {
+            margin-top: 35px !important;
+            padding-top: 150%
+          }
+          .largeWidth {
+                background-color: white;
+
+            }
+
+            .smallWidth {
+                background-color: #0a86c4;
+                color: white;
+            }
+
+      </style>
+
+        <ul class="list" ng-if="abonnement == 1">
+
+          <div ng-if="etape ==0">
+          
+            <!-- <div class="row">
+                <div class="col text-left">
+                    <label for="">Heure début</label>
+                    <input type="time" id="heureArrivee" style="color:#0a86c4;font-weight: bold;"
+                      placeholder="Heure début" >
+                </div>
+                <div class="col text-right">
+                    <label for="" style="margin-right: 90px;">Heure fin</label>
+                    <input type="time" id="heureDepart" style="color:#0a86c4;font-weight: bold;"
+                        placeholder="Heure fin" >
+                </div>
+            </div> -->
+
+            <ul class="list">
+              <div class="row">
+                <div class="col">
+                    <button class="button button-block button-assertive"
+                            cancel-button="{{ 'fichevisite_select_pv_return' | translate }}"
+                            reset-button="{{ 'fichevisite_select_pv_cancel' | translate }}"
+                            cancel-search-button="{{ 'fichevisite_select_pv_clear' | translate }}"
+                            search-placeholder="{{ 'fichevisite_select_pv_search' | translate }}" modal-select=""
+                            ng-model="data.villechoisit" options="listvilles" option-getter="getOptVille(option)"
+                            modal-button-left="{{ 'fichevisite_select_pv_return' | translate }}" modal-title="Selection"
+                            has-search="true">
+              
+                            <label for="" ng-if="!data.villechoisit">Choisir de ville</label>
+                            <label for="" ng-if="data.villechoisit">{{data.villechoisit.name}}</label>
+                            
+                            <div class="option">
+                              <h2> {{option.name}}</h2>
+                            </div>
+                          </button>
+               
+
+                </div>
+                <div class="col">
+                    <button class="button button-block button-assertive"
+                            cancel-button="{{ 'fichevisite_select_pv_return' | translate }}"
+                            reset-button="{{ 'fichevisite_select_pv_cancel' | translate }}"
+                            cancel-search-button="{{ 'fichevisite_select_pv_clear' | translate }}"
+                            search-placeholder="{{ 'fichevisite_select_pv_search' | translate }}" modal-select=""
+                            ng-model="data.typechantierchoisit" options="data.listTypeChantier" option-getter="getOptTypechantierchoisi(option)"
+                            modal-button-left="{{ 'fichevisite_select_pv_return' | translate }}" modal-title="Selection"
+                            has-search="true">
+              
+                            <label for="" ng-if="!data.typechantierchoisit">Type de chantier</label>
+                            <label for="" ng-if="data.typechantierchoisit">{{data.typechantierchoisit.typechantier}}</label>
+                            
+                            <div class="option">
+                              <h2> {{option.typechantier}}</h2>
+                            </div>
+                      </button>
+                </div>
+              </div>
+            
+                <ion-radio style="font-size: 10px;" ng-model="data.traveaux" ng-value="'INSTALLATION'">INSTALLATION</ion-radio>
+                <ion-radio style="font-size: 10px;" ng-model="data.traveaux" ng-value="'SURVEY'">SURVEY</ion-radio>
+                <ion-radio style="font-size: 10px;" ng-model="data.traveaux" ng-value="'INSTALLATION + SURVEY'">INSTALLATION + SURVEY</ion-radio>
+                <ion-radio style="font-size: 10px;" ng-model="data.traveaux" ng-value="'FINALISATION'">FINALISATION</ion-radio>
+                <ion-radio style="font-size: 10px;" ng-model="data.traveaux" ng-value="'PASSAGE'">PASSAGE</ion-radio>
+             
+            
+            </ul>
+            <div class="row">
+              <div class="col">
+                   <label for="" style="font-weight: bold;">Chef de chantier</label>
+                     <input type="text" 
+                     ng-keyup="getRxcui(data.gerant,'gerant')"
+                     placeholder="taper ici" ng-model="data.gerant">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                   <label for="" style="font-weight: bold;">Adresse</label>
+                     <input type="text"
+                     ng-keyup="getRxcui(data.adresse,'adresse')" 
+                     placeholder="taper ici" ng-model="data.adresse">
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 15px !important;">
+              <div class="col">
+                   <label for="" style="font-weight: bold;">Commentaire</label>
+                     <input type="text" 
+                     ng-keyup="getRxcui(data.commentaire,'commentaire')"
+                     placeholder="taper ici" ng-model="data.commentaire">
+            </div>
+            
+          </div>
+        
+      </div>
+
+      <!-- Fin etape 0-->
+      <!-- Fin etape 0-->
+
+          <div class="row" style="margin-bottom: 10px;" ng-if="etape>0">
+              <div class="col text-center;" ng-class="{largeWidth: etape !== 1, smallWidth: etape == 1}" ng-click="tab(1)">
+                  <label for="" style="font-weight: bold;text-align: center;font-size: 10px;">SURVEY</label>
+              </div>
+
+                <div class="col text-center;" ng-class="{largeWidth: etape !== 2, smallWidth: etape == 2}">
+                    <label for="" style="font-weight: bold;text-align: center;font-size: 10px;" ng-click="tab(2)">INSTALLATION</label>
+                </div>
+
+              <div  class="col text-center;" ng-class="{largeWidth: etape !== 3, smallWidth: etape == 3}">
+                    <label for="" style="font-weight: bold;text-align: center;font-size: 10px;" ng-click="tab(3)">DEPART CHANTIER</label>
+              </div>
+          </div>
+
+          <div ng-if="etape ==1"> 
+
+            <div class="row">
+              <div class="col text-left">
+                  <label for="">Heure début</label>
+                  <input type="time"   ng-model="data.survey.heureDebut" style="color:#0a86c4;font-weight: bold;"
+                    placeholder="Heure début" >
+              </div>
+              <div class="col text-right">
+                  <label for="" style="margin-right: 90px;">Heure fin</label>
+                  <input type="time"  ng-model="data.survey.heureFin" style="color:#0a86c4;font-weight: bold;"
+                      placeholder="Heure fin" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                  <label for="" style="font-weight: bold;">Commentaire</label>
+                    <input type="text" 
+                    placeholder="taper ici" ng-model="data.survey.commentaire">
+              </div>
+            </div>
+
+                <div class="row">
+                     <div class="col">
+                        <button ng-click="addImage('survey')" class="button button-block button-assertive" color="danger" type="submit"
+                          name="submit"><span style="color:white"> Photo Survey</span></button>
+                     </div>
+                </div>
+
+                <div class="row" style="margin-top:10px !important;">
+                  <div class="col text-center">
+                   <ion-scroll *ng-if="data.survey.photo">
+                     <img ng-src="{{data.survey.photo}}" style="border-radius: 30%;"  width="50%"/>
+                   </ion-scroll>
+                  </div>
+                </div>
+
+              
+          </div>
+        
+          <script type="text/javascript">
+            function cacher() {
+              document.getElementById('cacher').style.visibility = 'hidden';
+            }
+
+          </script>
+          <div ng-if="etape==2">
+
+            <div class="row">
+              <div class="col text-left">
+                  <label for="">Heure début</label>
+                  <input type="time" style="color:#0a86c4;font-weight: bold;"
+                    placeholder="Heure début" ng-model="data.installation.heureDebut" >
+              </div>
+              <div class="col text-right">
+                  <label for="" style="margin-right: 90px;">Heure fin</label>
+                  <input type="time" style="color:#0a86c4;font-weight: bold;"
+                      placeholder="Heure fin" ng-model ="data.installation.heureFin" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                   <label for="" style="font-weight: bold;">Commentaire</label>
+                     <input type="text" 
+                     placeholder="taper ici" ng-model="data.installation.commentaire">
+              </div>
+            </div>
+       
+              <div class="row">
+                <div class="col">
+                   <button ng-click="addImage('installation')" class="button button-block button-assertive" color="danger" type="submit"
+                     name="submit"><span style="color:white"> Photo installation</span></button>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:10px !important;" >
+                <div class="col text-center">
+                 <ion-scroll *ng-if="data.installation.photo">
+                   <img ng-src="{{data.installation.photo}}" style="border-radius: 30%;"  width="50%"/>
+                 </ion-scroll>
+                </div>
+              </div>
+
+            
+          </div>
+
+          <div ng-if="etape==3">
+
+                <div class="row">
+                  <div class="col">
+                       <label for="" style="font-weight: bold;">Commentaire</label>
+                         <input type="text" 
+                         placeholder="taper ici" ng-model="data.depart.commentaire">
+                  </div>
+                </div>
+
+          
+
+                <div class="row" >
+          
+                  <div class="col">
+                    <button ng-click="addImage('depart')" class="button button-block button-assertive" color="danger" type="submit"
+                      name="submit"><span style="color:white"> Ajouter Photos chantier</span></button>
+                  </div>
+                </div>
+
+                <div class="row"  style="text-align: center !important;">
+                  <div class="col"><img ng-src="{{data.depart.photos[0]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[1]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[2]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[3]}}" width="100%" ></div>
+                </div>
+                <div class="row"  style="text-align: center !important;">
+                  <div class="col"><img ng-src="{{data.depart.photos[4]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[5]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[6]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[7]}}" width="100%" ></div>
+                </div>
+                <div class="row"  style="text-align: center !important;">
+                  <div class="col"><img ng-src="{{data.depart.photos[8]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[9]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[10]}}" width="100%" ></div>
+                  <div class="col"><img ng-src="{{data.depart.photos[11]}}" width="100%" ></div>
+                </div>
+
+          </div>
+          
+        </ul>
+
+        <ul class="list" ng-if="abonnement == 0" style="align-items: center;color: red">
+          <div style="text-align: center;">
+            <img src="./img/abonnement.png" ><br/>
+          <label>
+            Abonnement expiré.
+          </label>
+          </div>
+
+        </ul>
+
+      </ion-content>
+      <div >
+
+        <div class="row div-header">
+
+      
+          <div class="col" ng-if="etape==0">
+            <button ng-click="suivant(0, 1)" class="button button-block button-assertive" color="danger" type="submit"
+              name="submit"><span style="color:white">Suivant</span></button>
+          </div>
+          <div class="col" ng-if="etape>0">
+            <button ng-click="suivant(0, -1)" class="button button-block button-assertive" color="danger" type="submit"
+              name="submit"><span style="color:white">Retour</span></button>
+          </div>
+          <div class="col" ng-if="etape>0">
+            <button ng-click="valideVisite()"  class="button button-block button-assertive" color="danger" type="submit"
+              name="submit"><span style="color:white">Valider</span></button>
+          </div>
+        
+        </div>
+        
+      </div>
+    </div>
+  </ion-pane>
+</ion-view>

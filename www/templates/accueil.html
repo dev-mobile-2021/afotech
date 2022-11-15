@@ -1,0 +1,57 @@
+<ion-view title="{{ 'TAB1' | translate }}" hide-nav-bar="true" hide-tabs>
+  <ion-pane>
+    <div ng-app="starter" >
+
+  <ion-content padding="true" style="display: flex; align-items: center; justify-content: center;" overflow-scroll="false">
+      <style type="text/css">
+        input[readonly] {
+          background-color: transparent !important;
+          cursor: not-allowed;
+
+        }
+        .img {
+          border-radius: 50%;
+        }
+
+      </style>
+    <div style="text-align: center">
+      <!-- <div style="text-align: center;margin-top: 5%;color: #0a86c4;font-weight: bolder;">
+        <p>
+          AFOTECH<br/>
+          Traitement des eaux
+        </p>
+      </div> -->
+
+      <p style="margin-top: 10%;">
+
+      <img src="./img/LOGO.jpeg" width="50%" style="border-radius: 50%;">
+      <!-- <img src="./img/2.jpg" style="border-radius: 50%;">
+
+      <img src="./img/3.jpg" style="border-radius: 50%;">
+
+      <img src="./img/4.jpg" style="border-radius: 50%;"> -->
+
+      <p style="margin-top: 10%;">
+
+        <div>
+          <a href="#/app/login1" class="button button-block button-assertive"><i class="icon ion-log-in"></i>{{ 'btn_conn' | translate }}</a>
+        </div>
+
+      </p>
+      <br>
+
+    </div>
+    <br/>
+    <ion-footer style="text-align: center !important;color: #0a86c4;font-weight: bolder; position:absolute; bottom:0;">
+
+    <p >
+      &copy HTSOFT
+      Version beta-1.0
+    </p>
+
+    </ion-footer>
+  </ion-content>
+
+</div>
+</ion-pane>
+</ion-view>

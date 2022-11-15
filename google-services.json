@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663293422060",
+    "project_id": "afotech-5b5a3",
+    "storage_bucket": "afotech-5b5a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663293422060:android:87d1ab53832f696e8178c9",
+        "android_client_info": {
+          "package_name": "com.htsoft.ccbm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663293422060-iet2t08i556pt4t3b9tjfj1vp86dliul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCatNG1wkutO-jgJlm_iTQuxCULHwFzZg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663293422060-iet2t08i556pt4t3b9tjfj1vp86dliul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
